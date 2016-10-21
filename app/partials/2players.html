@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="options">
+		<button ng-click="newGame(player.first)" class="btn btn-primary">New Game</button>
+		<br><br>
+		First turn goes to:
+		<input type="radio"
+               name="first"
+               ng-model="player.first"
+               ng-value="1"> Player 1
+        <input type="radio"
+               name="first"
+               ng-model="player.first"
+               ng-value="2">Player 2
+		 <h4>{{ message }}</h4>
+
+	</div>       
+
+	<div class="ttt">
+		<div class="board">
+			<div ng-repeat="row in gameBoard track by $index" class="row">
+				<div ng-repeat="box in row track by $index" ng-click="newMove($parent.$index, $index)" ng-class='{"col-xs-offset-3":$first}' class="col-xs-2 box">
+					{{ getSymbol($parent.$index, $index) }}
+				</div>
+			</div>
+		</div>
+	</div>	
+</div>

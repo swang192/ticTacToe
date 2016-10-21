@@ -1,0 +1,9 @@
+.title, .options, .box {
+	text-align: center;
+}
+
+.box {
+	border: 2px solid grey;
+	height: 10vw;
+	font-size: 6vw; 
+}
