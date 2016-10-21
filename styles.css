@@ -7,3 +7,11 @@
 	height: 10vw;
 	font-size: 6vw; 
 }
+
+.winner {
+	color: lightgreen;
+}
+
+.tie {
+	color: grey;
+}

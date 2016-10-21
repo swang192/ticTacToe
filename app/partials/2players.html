@@ -18,7 +18,7 @@
 	<div class="ttt">
 		<div class="board">
 			<div ng-repeat="row in gameBoard track by $index" class="row">
-				<div ng-repeat="box in row track by $index" ng-click="newMove($parent.$index, $index)" ng-class='{"col-xs-offset-3":$first}' class="col-xs-2 box">
+				<div ng-repeat="box in row track by $index" ng-click="newMove($parent.$index, $index)" ng-class='{"col-xs-offset-3":$first, "winner": isWinner($parent.$index, $index) === true, "tie": status === "tie"}' class="col-xs-2 box">
 					{{ getSymbol($parent.$index, $index) }}
 				</div>
 			</div>

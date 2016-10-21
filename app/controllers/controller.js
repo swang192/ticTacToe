@@ -3,6 +3,7 @@ app.controller("tttController", ['$scope', 'gameBoardFactory', function($scope, 
 	$scope.player = { first: 1 };
 	$scope.gameBoard;
 	$scope.message;
+	$scope.status;
 
 
 	var init =  function(player) {
@@ -24,14 +25,15 @@ app.controller("tttController", ['$scope', 'gameBoardFactory', function($scope, 
 		gameBoardFactory.newMove(row, box);
 		$scope.gameBoard = gameBoardFactory.updateBoard();
 		console.log($scope.gameBoard);
-		if (gameBoardFactory.getStatus() === "running") {
+		$scope.status = gameBoardFactory.getStatus();
+		if ($scope.status === "running") {
 			currPlayer = gameBoardFactory.switchTurns();
 			$scope.message = "It's Player " + currPlayer + "'s turn.";
 		}
-		else if (gameBoardFactory.getStatus() === "win") {
+		else if ($scope.status === "win") {
 			$scope.message = "Player " + currPlayer + " wins!";
 		}
-		else if (gameBoardFactory.getStatus() === "tie") { //tie
+		else if ($scope.status === "tie") { //tie
 			$scope.message = "It's a tie!"
 		} 
 
@@ -42,13 +44,17 @@ app.controller("tttController", ['$scope', 'gameBoardFactory', function($scope, 
 	};
 
 	$scope.getSymbol = function(row, box) {
-		console.log($scope.gameBoard[row][box]);
+		//Return X if box belongs to player 1, or O if it belongs to player 2.
 		if ($scope.gameBoard[row][box] === 1) {
 			return "X";
 		}
 		if ($scope.gameBoard[row][box] === 2) {
 			return "O";
 		}
+	};
+
+	$scope.isWinner = function(row, box) {
+		return gameBoardFactory.isWinner(row, box); 
 	};
 
 }]);
